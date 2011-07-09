@@ -4,7 +4,7 @@ Donate link: http://www.mattvanandel.com/
 Tags: example, table, data, WP_List_Table, admin, plugin, list table
 Requires at least: 3.2
 Tested up to: 3.2
-Stable tag: 1.0
+Stable tag: 1.1
 
 A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
 
@@ -17,9 +17,12 @@ WP_List_Table class for quickly and easily generating consistent, standardized, 
 One new admin menu is created: "List Table Example". This page includes an example table and all the documentation needed to reproduce it. Developers who
 open the PHP file itself will find exceptionally well documented code outlining all the information needed to duplicate this feature.
 
-For more information, please visit the <a href="http://codex.wordpress.org/Function_Reference/add_menu_page">WP_List_Tables</a> page in the WordPress Codex.
+For more information, please visit the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table">WP_List_Tables</a> page in the WordPress Codex.
 
 == Changelog ==
+
+= 1.1 =
+* Fixed an incorrect codex link in the readme 
 
 = 1.0 =
 * Demonstrates usage of WP_List_Table
