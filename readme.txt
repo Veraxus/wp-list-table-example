@@ -2,9 +2,9 @@
 Contributors: Matt Van Andel
 Donate link: http://www.mattvanandel.com/
 Tags: example, table, data, WP_List_Table, admin, plugin, list table
-Requires at least: 3.2
-Tested up to: 3.2
-Stable tag: 1.1
+Requires at least: 3.5
+Tested up to: 3.5
+Stable tag: 1.2
 
 A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
 
@@ -20,6 +20,9 @@ open the PHP file itself will find exceptionally well documented code outlining 
 For more information, please visit the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table">WP_List_Tables</a> page in the WordPress Codex.
 
 == Changelog ==
+
+= 1.2 =
+* Fixed a bug that caused sorting to not quite work as expected
 
 = 1.1 =
 * Fixed an incorrect codex link in the readme 
