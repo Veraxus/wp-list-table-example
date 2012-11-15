@@ -252,7 +252,7 @@ class TT_Example_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
         $sortable_columns = array(
-            'title'     => array('title',true),     //true means its already sorted
+            'title'     => array('title',false),     //true means it's already sorted
             'rating'    => array('rating',false),
             'director'  => array('director',false)
         );
@@ -306,6 +306,7 @@ class TT_Example_List_Table extends WP_List_Table {
      * $this->set_pagination_args(), although the following properties and methods
      * are frequently interacted with here...
      * 
+     * @global WPDB $wpdb
      * @uses $this->_column_headers
      * @uses $this->items
      * @uses $this->get_columns()
@@ -314,7 +315,8 @@ class TT_Example_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        
+        global $wpdb; //This is used only if making any database queries
+
         /**
          * First, lets decide how many records per page to show
          */
