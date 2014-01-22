@@ -3,12 +3,12 @@
 Plugin Name: Custom List Table Example
 Plugin URI: http://www.mattvanandel.com/
 Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
-Version: 1.1
+Version: 1.3
 Author: Matt Van Andel
 Author URI: http://www.mattvanandel.com
 License: GPL2
 */
-/*  Copyright 2011  Matthew Van Andel  (email : matt@mattvanandel.com)
+/*  Copyright 2014  Matthew Van Andel  (email : matt@mattvanandel.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -37,7 +37,22 @@ License: GPL2
 /*************************** LOAD THE BASE CLASS *******************************
  *******************************************************************************
  * The WP_List_Table class isn't automatically available to plugins, so we need
- * to check if it's available and load it if necessary.
+ * to check if it's available and load it if necessary. In this tutorial, we are
+ * going to use the WP_List_Table class directly from WordPress core.
+ *
+ * IMPORTANT:
+ * Please note that the WP_List_Table class technically isn't an official API,
+ * and it could change at some point in the distant future. Should that happen,
+ * I will update this plugin with the most current techniques for your reference
+ * immediately.
+ *
+ * If you are really worried about future compatibility, you can make a copy of
+ * the WP_List_Table class (file path is shown just below) to use and distribute
+ * with your plugins. If you do that, just remember to change the name of the
+ * class to avoid conflicts with core.
+ *
+ * Since I will be keeping this tutorial up-to-date for the foreseeable future,
+ * I am going to work with the copy of the class provided in WordPress core.
  */
 if(!class_exists('WP_List_Table')){
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
@@ -113,7 +128,8 @@ class TT_Example_List_Table extends WP_List_Table {
                 'director'  => 'Zach Snyder'
             )
         );
-    
+
+
     /** ************************************************************************
      * REQUIRED. Set up a constructor that references the parent constructor. We 
      * use the parent reference to set some default configs.
@@ -129,8 +145,8 @@ class TT_Example_List_Table extends WP_List_Table {
         ) );
         
     }
-    
-    
+
+
     /** ************************************************************************
      * Recommended. This method is called when the parent class can't find a method
      * specifically build for a given column. Generally, it's recommended to include
@@ -161,8 +177,8 @@ class TT_Example_List_Table extends WP_List_Table {
                 return print_r($item,true); //Show the whole array for troubleshooting purposes
         }
     }
-    
-        
+
+
     /** ************************************************************************
      * Recommended. This is a custom column method and is responsible for what
      * is rendered in any column with a name/slug of 'title'. Every time the class
@@ -194,7 +210,8 @@ class TT_Example_List_Table extends WP_List_Table {
             /*$3%s*/ $this->row_actions($actions)
         );
     }
-    
+
+
     /** ************************************************************************
      * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
      * is given special treatment when columns are processed. It ALWAYS needs to
@@ -211,8 +228,8 @@ class TT_Example_List_Table extends WP_List_Table {
             /*$2%s*/ $item['ID']                //The value of the checkbox should be the record's id
         );
     }
-    
-    
+
+
     /** ************************************************************************
      * REQUIRED! This method dictates the table's columns and titles. This should
      * return an array where the key is the column slug (and class) and the value 
@@ -235,7 +252,8 @@ class TT_Example_List_Table extends WP_List_Table {
         );
         return $columns;
     }
-    
+
+
     /** ************************************************************************
      * Optional. If you want one or more columns to be sortable (ASC/DESC toggle), 
      * you will need to register it here. This should return an array where the 
@@ -258,8 +276,8 @@ class TT_Example_List_Table extends WP_List_Table {
         );
         return $sortable_columns;
     }
-    
-    
+
+
     /** ************************************************************************
      * Optional. If you need to include bulk actions in your list table, this is
      * the place to define them. Bulk actions are an associative array in the format
@@ -280,8 +298,8 @@ class TT_Example_List_Table extends WP_List_Table {
         );
         return $actions;
     }
-    
-    
+
+
     /** ************************************************************************
      * Optional. You can handle your bulk actions anywhere or anyhow you prefer.
      * For this example package, we will handle it in the class to keep things
@@ -297,8 +315,8 @@ class TT_Example_List_Table extends WP_List_Table {
         }
         
     }
-    
-    
+
+
     /** ************************************************************************
      * REQUIRED! This is where you prepare your data for display. This method will
      * usually be used to query the database, sort and filter the data, and generally
@@ -385,6 +403,9 @@ class TT_Example_List_Table extends WP_List_Table {
          * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
          * 
          * In a real-world situation, this is where you would place your query.
+         *
+         * For information on making queries in WordPress, see this Codex entry:
+         * http://codex.wordpress.org/Class_Reference/wpdb
          * 
          * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
          * ---------------------------------------------------------------------
@@ -432,7 +453,8 @@ class TT_Example_List_Table extends WP_List_Table {
             'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
         ) );
     }
-    
+
+
 }
 
 
@@ -449,7 +471,10 @@ function tt_add_menu_items(){
 } add_action('admin_menu', 'tt_add_menu_items');
 
 
-/***************************** RENDER TEST PAGE ********************************
+
+
+
+/** *************************** RENDER TEST PAGE ********************************
  *******************************************************************************
  * This function renders the admin page and the example list table. Although it's
  * possible to call prepare_items() and display() from the constructor, there
@@ -473,7 +498,7 @@ function tt_render_list_page(){
         <div style="background:#ECECEC;border:1px solid #CCC;padding:0 10px;margin-top:5px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;">
             <p>This page demonstrates the use of the <tt><a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WP_List_Table</a></tt> class in plugins.</p> 
             <p>For a detailed explanation of using the <tt><a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WP_List_Table</a></tt>
-            class in your own plugins, you can view this file <a href="/wp-admin/plugin-editor.php?plugin=table-test/table-test.php" style="text-decoration:none;">in the Plugin Editor</a> or simply open <tt style="color:gray;"><?php echo __FILE__ ?></tt> in the PHP editor of your choice.</p>
+            class in your own plugins, you can view this file <a href="<?php echo admin_url( 'plugin-editor.php?plugin='.plugin_basename(__FILE__) ); ?>" style="text-decoration:none;">in the Plugin Editor</a> or simply open <tt style="color:gray;"><?php echo __FILE__ ?></tt> in the PHP editor of your choice.</p>
             <p>Additional class details are available on the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank" style="text-decoration:none;">WordPress Codex</a>.</p>
         </div>
         

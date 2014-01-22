@@ -1,12 +1,12 @@
 === Custom List Table Example ===
-Contributors: Matt Van Andel
+Contributors: Veraxus
 Donate link: http://www.mattvanandel.com/
 Tags: example, table, data, WP_List_Table, admin, plugin, list table
 Requires at least: 3.5
-Tested up to: 3.5
-Stable tag: 1.2
+Tested up to: 3.9
+Stable tag: 1.3
 
-A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
+A highly documented plugin that demonstrates how to create custom admin list-tables using official WordPress techniques.
 
 == Description ==
 
@@ -21,11 +21,15 @@ For more information, please visit the <a href="http://codex.wordpress.org/Class
 
 == Changelog ==
 
+= 1.3 =
+* Minor updates to documentation
+* Fixed the WordPress Plugin Editor link on the example admin page
+
 = 1.2 =
 * Fixed a minor bug that could result in sorting not quite working as expected
 
 = 1.1 =
-* Fixed an incorrect codex link in the readme 
+* Fixed an incorrect codex link in the readme
 
 = 1.0 =
 * Demonstrates usage of WP_List_Table
