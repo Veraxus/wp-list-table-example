@@ -3,8 +3,8 @@ Contributors: Veraxus
 Donate link: http://www.mattvanandel.com/
 Tags: example, table, data, WP_List_Table, admin, plugin, list table
 Requires at least: 3.5
-Tested up to: 3.9
-Stable tag: 1.3
+Tested up to: 4.3
+Stable tag: 1.4
 
 A highly documented plugin that demonstrates how to create custom admin list-tables using official WordPress techniques.
 
@@ -20,6 +20,10 @@ open the PHP file itself will find exceptionally well documented code outlining 
 For more information, please visit the <a href="http://codex.wordpress.org/Class_Reference/WP_List_Table">WP_List_Tables</a> page in the WordPress Codex.
 
 == Changelog ==
+
+= 1.4 =
+* Minor addition to documentation.
+* NOTE: No changes are required to maintain support with new list tables in WordPress 4.3!
 
 = 1.3 =
 * Minor updates to documentation

@@ -3,12 +3,12 @@
 Plugin Name: Custom List Table Example
 Plugin URI: http://www.mattvanandel.com/
 Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
-Version: 1.3
-Author: Matt Van Andel
+Version: 1.4
+Author: Matt van Andel
 Author URI: http://www.mattvanandel.com
 License: GPL2
 */
-/*  Copyright 2014  Matthew Van Andel  (email : matt@mattvanandel.com)
+/*  Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -80,7 +80,10 @@ class TT_Example_List_Table extends WP_List_Table {
      * Normally we would be querying data from a database and manipulating that
      * for use in your list table. For this example, we're going to simplify it
      * slightly and create a pre-built array. Think of this as the data that might
-     * be returned by $wpdb->query().
+     * be returned by $wpdb->query()
+     * 
+     * In a real-world scenario, you would make your own custom query inside
+     * this class' prepare_items() method.
      * 
      * @var array 
      **************************************************************************/
@@ -126,7 +129,13 @@ class TT_Example_List_Table extends WP_List_Table {
                 'title'     => 'Watchmen',
                 'rating'    => 'R',
                 'director'  => 'Zach Snyder'
-            )
+            ),
+            array(
+                'ID'        => 8,
+                'title'     => '2001',
+                'rating'    => 'R',
+                'director'  => 'Stanley Kubrick'
+            ),
         );
 
 
