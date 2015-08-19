@@ -4,7 +4,7 @@ Donate link: http://www.mattvanandel.com/
 Tags: example, table, data, WP_List_Table, admin, plugin, list table
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.4
+Stable tag: 1.4.1
 
 A highly documented plugin that demonstrates how to create custom admin list-tables using official WordPress techniques.
 

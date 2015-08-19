@@ -3,7 +3,7 @@
 Plugin Name: Custom List Table Example
 Plugin URI: http://www.mattvanandel.com/
 Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
-Version: 1.4
+Version: 1.4.1
 Author: Matt van Andel
 Author URI: http://www.mattvanandel.com
 License: GPL2
@@ -133,7 +133,7 @@ class TT_Example_List_Table extends WP_List_Table {
             array(
                 'ID'        => 8,
                 'title'     => '2001',
-                'rating'    => 'R',
+                'rating'    => 'G',
                 'director'  => 'Stanley Kubrick'
             ),
         );
