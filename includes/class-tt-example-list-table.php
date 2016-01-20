@@ -185,7 +185,7 @@ class TT_Example_List_Table extends WP_List_Table {
 	 *
 	 * @param object $item        A singular item (one full row's worth of data).
 	 * @param string $column_name The name/slug of the column to be processed.
-	 * @return string Text or HTML to be placed inside the column <td>
+	 * @return string Text or HTML to be placed inside the column <td>.
 	 **************************************************************************/
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
@@ -205,7 +205,7 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * have it's own method.
 	 *
 	 * @param object $item A singular item (one full row's worth of data).
-	 * @return string Text to be placed inside the column <td> (movie title only).
+	 * @return string Text to be placed inside the column <td>.
 	 */
 	protected function column_cb( $item ) {
 		return sprintf(
@@ -215,7 +215,9 @@ class TT_Example_List_Table extends WP_List_Table {
 		);
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get title column value.
+	 *
 	 * Recommended. This is a custom column method and is responsible for what
 	 * is rendered in any column with a name/slug of 'title'. Every time the class
 	 * needs to render a column, it first looks for a method named
@@ -224,26 +226,46 @@ class TT_Example_List_Table extends WP_List_Table {
 	 *
 	 * This example also illustrates how to implement rollover actions. Actions
 	 * should be an associative array formatted as 'slug'=>'link html' - and you
-	 * will need to generate the URLs yourself. You could even ensure the links
+	 * will need to generate the URLs yourself. You could even ensure the links are
+	 * secured with wp_nonce_url(), as an expected security measure.
 	 *
-	 *
-	 * @see WP_List_Table::::single_row_columns()
-	 * @param array $item A singular item (one full row's worth of data)
-	 * @return string Text to be placed inside the column <td> (movie title only)
-	 **************************************************************************/
-	function column_title($item){
+	 * @param object $item A singular item (one full row's worth of data).
+	 * @return string Text to be placed inside the column <td>.
+	 */
+	protected function column_title( $item ) {
+		$page = wp_unslash( $_REQUEST['page'] ); // WPCS: Input var ok.
 
-		//Build row actions
-		$actions = array(
-			'edit'      => sprintf('<a href="?page=%s&action=%s&movie=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-			'delete'    => sprintf('<a href="?page=%s&action=%s&movie=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+		// Build edit row action.
+		$edit_query_args = array(
+			'page'   => $page,
+			'action' => 'edit',
+			'movie'  => $item['ID'],
 		);
 
-		//Return the title contents
-		return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-			/*$1%s*/ $item['title'],
-			/*$2%s*/ $item['ID'],
-			/*$3%s*/ $this->row_actions($actions)
+		$actions['edit'] = sprintf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( wp_nonce_url( admin_url( add_query_arg( $edit_query_args ) ), 'editmovie_' . $item['ID'] ) ),
+			_x( 'Edit', 'List table row action', 'wp-list-table-example' )
+		);
+
+		// Build delete row action.
+		$delete_query_args = array(
+			'page'   => $page,
+			'action' => 'delete',
+			'movie'  => $item['ID'],
+		);
+
+		$actions['delete'] = sprintf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( wp_nonce_url( admin_url( add_query_arg( $delete_query_args ) ), 'deletemovie_' . $item['ID'] ) ),
+			_x( 'Delete', 'List table row action', 'wp-list-table-example' )
+		);
+
+		// Return the title contents.
+		return sprintf('%1$s <span style="color:silver;">(id:%2$s)</span>%3$s',
+			$item['title'],
+			$item['ID'],
+			$this->row_actions( $actions )
 		);
 	}
 
