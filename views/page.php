@@ -3,7 +3,7 @@
 
 	<div style="background:#ececec;border:1px solid #ccc;padding:0 10px;margin-top:5px;border-radius:5px;">
 		<p>This page demonstrates the use of the <code><a href="http://codex.wordpress.org/Class_Reference/WP_List_Table" target="_blank">WP_List_Table</a></code> class in plugins.</p>
-		<p>For a detailed explanation of using the <code>WP_List_Table</code> class in your own plugins, you can view this file <a href="<?php echo admin_url( 'plugin-editor.php?plugin='.plugin_basename(__FILE__) ); ?>">in the Plugin Editor</a> or simply open <code><?php echo __FILE__ ?></code> in the PHP editor of your choice.</p>
+		<p>For a detailed explanation of using the <code>WP_List_Table</code> class in your own plugins, simply open <code><?php echo __FILE__ ?></code> in the PHP editor of your choice.</p>
 		<p>Additional class details are available on the WordPress Codex.</p>
 	</div>
 
