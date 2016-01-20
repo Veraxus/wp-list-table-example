@@ -42,10 +42,14 @@
  * an update is released, your changes will be lost!
  * ========================================================================== */
 
+// Abort if this file is accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-
-/*************************** LOAD THE BASE CLASS *******************************
- *******************************************************************************
+/*
+ * Load the base class.
+ *
  * The WP_List_Table class isn't automatically available to plugins, so we need
  * to check if it's available and load it if necessary. In this tutorial, we are
  * going to use the WP_List_Table class directly from WordPress core.
@@ -64,8 +68,8 @@
  * Since I will be keeping this tutorial up-to-date for the foreseeable future,
  * I am going to work with the copy of the class provided in WordPress core.
  */
-if(!class_exists('WP_List_Table')){
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+if ( ! class_exists( 'WP_List_Table' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
 // Require the custom list table class.
