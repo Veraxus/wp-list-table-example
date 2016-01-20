@@ -9,7 +9,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: Custom List Table Example
- * Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
+ * Description: A highly-documented plugin that demonstrates how to create custom List Tables using official WP APIs.
  * Version:     1.4.1
  * Author:      Matt van Andel
  * Author URI:  http://www.mattvanandel.com
@@ -85,11 +85,11 @@ add_action( 'admin_menu', 'tt_add_menu_items' );
  */
 function tt_add_menu_items() {
 	add_menu_page(
-	    __( 'Example Plugin List Table', 'wp-list-table-example' ), // Page title.
-	    __( 'List Table Example', 'wp-list-table-example' ),        // Menu title.
-	    'activate_plugins',                                         // Capability.
-	    'tt_list_test',                                             // Menu slug.
-	    'tt_render_list_page'                                       // Callback function.
+		__( 'Example Plugin List Table', 'wp-list-table-example' ), // Page title.
+		__( 'List Table Example', 'wp-list-table-example' ),        // Menu title.
+		'activate_plugins',                                         // Capability.
+		'tt_list_test',                                             // Menu slug.
+		'tt_render_list_page'                                       // Callback function.
 	);
 }
 
