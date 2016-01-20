@@ -164,7 +164,9 @@ class TT_Example_List_Table extends WP_List_Table {
 		return $sortable_columns;
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get default column value.
+	 *
 	 * Recommended. This method is called when the parent class can't find a method
 	 * specifically build for a given column. Generally, it's recommended to include
 	 * one method for each column you want to render, keeping your package class
@@ -181,17 +183,17 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * For more detailed insight into how columns are handled, take a look at
 	 * WP_List_Table::single_row_columns()
 	 *
-	 * @param array $item A singular item (one full row's worth of data)
-	 * @param array $column_name The name/slug of the column to be processed
+	 * @param object $item        A singular item (one full row's worth of data).
+	 * @param string $column_name The name/slug of the column to be processed.
 	 * @return string Text or HTML to be placed inside the column <td>
 	 **************************************************************************/
-	function column_default($item, $column_name){
-		switch($column_name){
+	protected function column_default( $item, $column_name ) {
+		switch ( $column_name ) {
 			case 'rating':
 			case 'director':
-				return $item[$column_name];
+				return $item[ $column_name ];
 			default:
-				return print_r($item,true); //Show the whole array for troubleshooting purposes
+				return print_r( $item, true ); // Show the whole array for troubleshooting purposes.
 		}
 	}
 
