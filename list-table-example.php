@@ -7,6 +7,7 @@ Version: 1.4.1
 Author: Matt van Andel
 Author URI: http://www.mattvanandel.com
 License: GPL2
+Text Domain: wp-list-table-example
 */
 /*  Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
 
@@ -61,18 +62,22 @@ if(!class_exists('WP_List_Table')){
 // Require the custom list table class.
 require dirname( __FILE__ ) . '/includes/class-tt-example-list-table.php';
 
-/** ************************ REGISTER THE TEST PAGE ****************************
- *******************************************************************************
+add_action( 'admin_menu', 'tt_add_menu_items' );
+/**
+ * Register the test page.
+ *
  * Now we just need to define an admin page. For this example, we'll add a top-level
  * menu item to the bottom of the admin menus.
  */
-function tt_add_menu_items(){
-    add_menu_page('Example Plugin List Table', 'List Table Example', 'activate_plugins', 'tt_list_test', 'tt_render_list_page');
-} add_action('admin_menu', 'tt_add_menu_items');
-
-
-
-
+function tt_add_menu_items() {
+	add_menu_page(
+	    __( 'Example Plugin List Table', 'wp-list-table-example' ), // Page title.
+	    __( 'List Table Example', 'wp-list-table-example' ),        // Menu title.
+	    'activate_plugins',                                         // Capability.
+	    'tt_list_test',                                             // Menu slug.
+	    'tt_render_list_page'                                       // Callback function.
+	);
+}
 
 /** *************************** RENDER TEST PAGE ********************************
  *******************************************************************************
