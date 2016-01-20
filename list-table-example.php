@@ -6,7 +6,7 @@ Description: A highly documented plugin that demonstrates how to create custom L
 Version: 1.4.1
 Author: Matt van Andel
 Author URI: http://www.mattvanandel.com
-License: GPL2
+License: GPL-2.0+
 */
 /*  Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
 
