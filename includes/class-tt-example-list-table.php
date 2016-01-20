@@ -186,7 +186,7 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * @param object $item        A singular item (one full row's worth of data).
 	 * @param string $column_name The name/slug of the column to be processed.
 	 * @return string Text or HTML to be placed inside the column <td>.
-	 **************************************************************************/
+	 */
 	protected function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'rating':
@@ -326,7 +326,7 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * @uses $this->get_sortable_columns()
 	 * @uses $this->get_pagenum()
 	 * @uses $this->set_pagination_args()
-	 **************************************************************************/
+	 */
 	function prepare_items() {
 		global $wpdb; //This is used only if making any database queries
 
