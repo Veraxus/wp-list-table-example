@@ -18,7 +18,8 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-/*  Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
+/*
+    Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -34,13 +35,13 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
-
-/* == NOTICE ===================================================================
- * Please do not alter this file. Instead: make a copy of the entire plugin, 
- * rename it, and work inside the copy. If you modify this plugin directly and 
+/*
+ * == NOTICE ===================================================================
+ * Please do not alter this file. Instead: make a copy of the entire plugin,
+ * rename it, and work inside the copy. If you modify this plugin directly and
  * an update is released, your changes will be lost!
- * ========================================================================== */
+ * ==========================================================================
+ */
 
 // Abort if this file is accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
