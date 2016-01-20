@@ -1,14 +1,23 @@
 <?php
-/*
-Plugin Name: Custom List Table Example
-Plugin URI: http://www.mattvanandel.com/
-Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
-Version: 1.4.1
-Author: Matt van Andel
-Author URI: http://www.mattvanandel.com
-License: GPL2
-Text Domain: wp-list-table-example
-*/
+/**
+ * Custom List Table Example plugin
+ *
+ * @package   WPListTableExample
+ * @author    Matt van Andel
+ * @copyright 2015 Matthew van Andel
+ * @license   GPL-2.0+
+ *
+ * @wordpress-plugin
+ * Plugin Name: Custom List Table Example
+ * Description: A highly documented plugin that demonstrates how to create custom List Tables using official WordPress APIs.
+ * Version:     1.4.1
+ * Author:      Matt van Andel
+ * Author URI:  http://www.mattvanandel.com
+ * Text Domain: wp-list-table-example
+ * License:     GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+
 /*  Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
 
     This program is free software; you can redistribute it and/or modify

@@ -4,7 +4,7 @@
  *
  * @package   WPListTableExample
  * @author    Matt van Andel
- * @copyright 2016 Matt van Andel
+ * @copyright 2015 Matthew van Andel
  * @license   GPL-2.0+
  */
 
