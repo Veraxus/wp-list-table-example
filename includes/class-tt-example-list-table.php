@@ -107,6 +107,52 @@ class TT_Example_List_Table extends WP_List_Table {
 	}
 
 	/** ************************************************************************
+	 * REQUIRED! This method dictates the table's columns and titles. This should
+	 * return an array where the key is the column slug (and class) and the value
+	 * is the column's title text. If you need a checkbox for bulk actions, refer
+	 * to the $columns array below.
+	 *
+	 * The 'cb' column is treated differently than the rest. If including a checkbox
+	 * column in your table you must create a column_cb() method. If you don't need
+	 * bulk actions or checkboxes, simply leave the 'cb' entry out of your array.
+	 *
+	 * @see WP_List_Table::::single_row_columns()
+	 * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
+	 **************************************************************************/
+	function get_columns(){
+		$columns = array(
+			'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
+			'title'     => 'Title',
+			'rating'    => 'Rating',
+			'director'  => 'Director'
+		);
+		return $columns;
+	}
+
+	/** ************************************************************************
+	 * Optional. If you want one or more columns to be sortable (ASC/DESC toggle),
+	 * you will need to register it here. This should return an array where the
+	 * key is the column that needs to be sortable, and the value is db column to
+	 * sort by. Often, the key and value will be the same, but this is not always
+	 * the case (as the value is a column name from the database, not the list table).
+	 *
+	 * This method merely defines which columns should be sortable and makes them
+	 * clickable - it does not handle the actual sorting. You still need to detect
+	 * the ORDERBY and ORDER querystring variables within prepare_items() and sort
+	 * your data accordingly (usually by modifying your query).
+	 *
+	 * @return array An associative array containing all the columns that should be sortable: 'slugs'=>array('data_values',bool)
+	 **************************************************************************/
+	function get_sortable_columns() {
+		$sortable_columns = array(
+			'title'     => array('title',false),     //true means it's already sorted
+			'rating'    => array('rating',false),
+			'director'  => array('director',false)
+		);
+		return $sortable_columns;
+	}
+
+	/** ************************************************************************
 	 * Recommended. This method is called when the parent class can't find a method
 	 * specifically build for a given column. Generally, it's recommended to include
 	 * one method for each column you want to render, keeping your package class
@@ -137,6 +183,22 @@ class TT_Example_List_Table extends WP_List_Table {
 		}
 	}
 
+	/** ************************************************************************
+	 * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
+	 * is given special treatment when columns are processed. It ALWAYS needs to
+	 * have it's own method.
+	 *
+	 * @see WP_List_Table::::single_row_columns()
+	 * @param array $item A singular item (one full row's worth of data)
+	 * @return string Text to be placed inside the column <td> (movie title only)
+	 **************************************************************************/
+	function column_cb($item){
+		return sprintf(
+			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
+			/*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
+			/*$2%s*/ $item['ID']                //The value of the checkbox should be the record's id
+		);
+	}
 
 	/** ************************************************************************
 	 * Recommended. This is a custom column method and is responsible for what
@@ -170,73 +232,6 @@ class TT_Example_List_Table extends WP_List_Table {
 		);
 	}
 
-
-	/** ************************************************************************
-	 * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
-	 * is given special treatment when columns are processed. It ALWAYS needs to
-	 * have it's own method.
-	 *
-	 * @see WP_List_Table::::single_row_columns()
-	 * @param array $item A singular item (one full row's worth of data)
-	 * @return string Text to be placed inside the column <td> (movie title only)
-	 **************************************************************************/
-	function column_cb($item){
-		return sprintf(
-			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
-			/*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-			/*$2%s*/ $item['ID']                //The value of the checkbox should be the record's id
-		);
-	}
-
-
-	/** ************************************************************************
-	 * REQUIRED! This method dictates the table's columns and titles. This should
-	 * return an array where the key is the column slug (and class) and the value
-	 * is the column's title text. If you need a checkbox for bulk actions, refer
-	 * to the $columns array below.
-	 *
-	 * The 'cb' column is treated differently than the rest. If including a checkbox
-	 * column in your table you must create a column_cb() method. If you don't need
-	 * bulk actions or checkboxes, simply leave the 'cb' entry out of your array.
-	 *
-	 * @see WP_List_Table::::single_row_columns()
-	 * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
-	 **************************************************************************/
-	function get_columns(){
-		$columns = array(
-			'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-			'title'     => 'Title',
-			'rating'    => 'Rating',
-			'director'  => 'Director'
-		);
-		return $columns;
-	}
-
-
-	/** ************************************************************************
-	 * Optional. If you want one or more columns to be sortable (ASC/DESC toggle),
-	 * you will need to register it here. This should return an array where the
-	 * key is the column that needs to be sortable, and the value is db column to
-	 * sort by. Often, the key and value will be the same, but this is not always
-	 * the case (as the value is a column name from the database, not the list table).
-	 *
-	 * This method merely defines which columns should be sortable and makes them
-	 * clickable - it does not handle the actual sorting. You still need to detect
-	 * the ORDERBY and ORDER querystring variables within prepare_items() and sort
-	 * your data accordingly (usually by modifying your query).
-	 *
-	 * @return array An associative array containing all the columns that should be sortable: 'slugs'=>array('data_values',bool)
-	 **************************************************************************/
-	function get_sortable_columns() {
-		$sortable_columns = array(
-			'title'     => array('title',false),     //true means it's already sorted
-			'rating'    => array('rating',false),
-			'director'  => array('director',false)
-		);
-		return $sortable_columns;
-	}
-
-
 	/** ************************************************************************
 	 * Optional. If you need to include bulk actions in your list table, this is
 	 * the place to define them. Bulk actions are an associative array in the format
@@ -258,7 +253,6 @@ class TT_Example_List_Table extends WP_List_Table {
 		return $actions;
 	}
 
-
 	/** ************************************************************************
 	 * Optional. You can handle your bulk actions anywhere or anyhow you prefer.
 	 * For this example package, we will handle it in the class to keep things
@@ -274,7 +268,6 @@ class TT_Example_List_Table extends WP_List_Table {
 		}
 
 	}
-
 
 	/** ************************************************************************
 	 * REQUIRED! This is where you prepare your data for display. This method will
@@ -412,6 +405,4 @@ class TT_Example_List_Table extends WP_List_Table {
 			'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
 		) );
 	}
-
-
 }
