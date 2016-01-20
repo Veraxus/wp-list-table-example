@@ -197,20 +197,21 @@ class TT_Example_List_Table extends WP_List_Table {
 		}
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get value for checkbox column.
+	 *
 	 * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
 	 * is given special treatment when columns are processed. It ALWAYS needs to
 	 * have it's own method.
 	 *
-	 * @see WP_List_Table::::single_row_columns()
-	 * @param array $item A singular item (one full row's worth of data)
-	 * @return string Text to be placed inside the column <td> (movie title only)
-	 **************************************************************************/
-	function column_cb($item){
+	 * @param object $item A singular item (one full row's worth of data).
+	 * @return string Text to be placed inside the column <td> (movie title only).
+	 */
+	protected function column_cb( $item ) {
 		return sprintf(
 			'<input type="checkbox" name="%1$s[]" value="%2$s" />',
-			/*$1%s*/ $this->_args['singular'],  //Let's simply repurpose the table's singular label ("movie")
-			/*$2%s*/ $item['ID']                //The value of the checkbox should be the record's id
+			$this->_args['singular'],  // Let's simply repurpose the table's singular label ("movie").
+			$item['ID']                // The value of the checkbox should be the record's ID.
 		);
 	}
 
