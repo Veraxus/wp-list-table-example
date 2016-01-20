@@ -106,26 +106,30 @@ class TT_Example_List_Table extends WP_List_Table {
 		) );
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get a list of columns. The format is:
+	 * 'internal-name' => 'Title'
+	 *
 	 * REQUIRED! This method dictates the table's columns and titles. This should
 	 * return an array where the key is the column slug (and class) and the value
 	 * is the column's title text. If you need a checkbox for bulk actions, refer
 	 * to the $columns array below.
 	 *
 	 * The 'cb' column is treated differently than the rest. If including a checkbox
-	 * column in your table you must create a column_cb() method. If you don't need
+	 * column in your table you must create a `column_cb()` method. If you don't need
 	 * bulk actions or checkboxes, simply leave the 'cb' entry out of your array.
 	 *
 	 * @see WP_List_Table::::single_row_columns()
-	 * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
-	 **************************************************************************/
-	function get_columns(){
+	 * @return array An associative array containing column information.
+	 */
+	public function get_columns() {
 		$columns = array(
-			'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-			'title'     => 'Title',
-			'rating'    => 'Rating',
-			'director'  => 'Director'
+			'cb'       => '<input type="checkbox" />', // Render a checkbox instead of text.
+			'title'    => _x( 'Title', 'Column label','wp-list-table-example' ),
+			'rating'   => _x( 'Rating', 'Column label','wp-list-table-example' ),
+			'director' => _x( 'Director', 'Column label', 'wp-list-table-example' ),
 		);
+
 		return $columns;
 	}
 
