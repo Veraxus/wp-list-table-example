@@ -133,7 +133,14 @@ class TT_Example_List_Table extends WP_List_Table {
 		return $columns;
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get a list of sortable columns. The format is:
+	 * 'internal-name' => 'orderby'
+	 * or
+	 * 'internal-name' => array( 'orderby', true )
+	 *
+	 * The second format will make the initial sorting order be descending
+	 *
 	 * Optional. If you want one or more columns to be sortable (ASC/DESC toggle),
 	 * you will need to register it here. This should return an array where the
 	 * key is the column that needs to be sortable, and the value is db column to
@@ -142,17 +149,18 @@ class TT_Example_List_Table extends WP_List_Table {
 	 *
 	 * This method merely defines which columns should be sortable and makes them
 	 * clickable - it does not handle the actual sorting. You still need to detect
-	 * the ORDERBY and ORDER querystring variables within prepare_items() and sort
+	 * the ORDERBY and ORDER querystring variables within `prepare_items()` and sort
 	 * your data accordingly (usually by modifying your query).
 	 *
-	 * @return array An associative array containing all the columns that should be sortable: 'slugs'=>array('data_values',bool)
-	 **************************************************************************/
-	function get_sortable_columns() {
+	 * @return array An associative array containing all the columns that should be sortable.
+	 */
+	protected function get_sortable_columns() {
 		$sortable_columns = array(
-			'title'     => array('title',false),     //true means it's already sorted
-			'rating'    => array('rating',false),
-			'director'  => array('director',false)
+			'title'    => array( 'title', false ),
+			'rating'   => array( 'rating', false ),
+			'director' => array( 'director', false ),
 		);
+
 		return $sortable_columns;
 	}
 
