@@ -8,8 +8,9 @@
  * @license   GPL-2.0+
  */
 
-/************************** CREATE A PACKAGE CLASS *****************************
- *******************************************************************************
+/**
+ * Custom list table class.
+ *
  * Create a new list table package that extends the core WP_List_Table class.
  * WP_List_Table contains most of the framework for generating the table, but we
  * need to define and override some methods so that our data can be displayed
@@ -19,7 +20,10 @@
  * then call $yourInstance->prepare_items() to handle any data manipulation, then
  * finally call $yourInstance->display() to render the table to the page.
  *
- * Our theme for this list table is going to be movies.
+ * Our topic for this list table is going to be movies.
+ *
+ * @package WPListTableExample
+ * @author  Matt van Andel
  */
 class TT_Example_List_Table extends WP_List_Table {
 
