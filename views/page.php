@@ -15,7 +15,7 @@
 		<!-- For plugins, we also need to ensure that the form posts back to our current page -->
 		<input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
 		<!-- Now we can render the completed list table -->
-		<?php $testListTable->display() ?>
+		<?php $test_list_table->display() ?>
 	</form>
 
 </div>

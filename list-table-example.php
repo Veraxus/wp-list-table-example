@@ -92,20 +92,22 @@ function tt_add_menu_items() {
 	);
 }
 
-/** *************************** RENDER TEST PAGE ********************************
- *******************************************************************************
+/**
+ * Callback to render the test page.
+ *
  * This function renders the admin page and the example list table. Although it's
- * possible to call prepare_items() and display() from the constructor, there
+ * possible to call `prepare_items()` and `display()` from the constructor, there
  * are often times where you may need to include logic here between those steps,
  * so we've instead called those methods explicitly. It keeps things flexible, and
  * it's the way the list tables are used in the WordPress core.
  */
-function tt_render_list_page(){
-    //Create an instance of our package class...
-    $testListTable = new TT_Example_List_Table();
-    //Fetch, prepare, sort, and filter our data...
-    $testListTable->prepare_items();
+function tt_render_list_page() {
+	// Create an instance of our package class.
+	$test_list_table = new TT_Example_List_Table();
 
-    // Include the view markup.
+	// Fetch, prepare, sort, and filter our data.
+	$test_list_table->prepare_items();
+
+	// Include the view markup.
 	include dirname( __FILE__ ) . '/views/page.php';
 }
