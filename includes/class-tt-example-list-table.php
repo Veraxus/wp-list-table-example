@@ -100,9 +100,9 @@ class TT_Example_List_Table extends WP_List_Table {
 	public function __construct() {
 		// Set parent defaults.
 		parent::__construct( array(
-			'singular'  => 'movie',     // Singular name of the listed records.
-			'plural'    => 'movies',    // Plural name of the listed records.
-			'ajax'      => false,       // Does this table support ajax?
+			'singular' => 'movie',     // Singular name of the listed records.
+			'plural'   => 'movies',    // Plural name of the listed records.
+			'ajax'     => false,       // Does this table support ajax?
 		) );
 	}
 
@@ -125,8 +125,8 @@ class TT_Example_List_Table extends WP_List_Table {
 	public function get_columns() {
 		$columns = array(
 			'cb'       => '<input type="checkbox" />', // Render a checkbox instead of text.
-			'title'    => _x( 'Title', 'Column label','wp-list-table-example' ),
-			'rating'   => _x( 'Rating', 'Column label','wp-list-table-example' ),
+			'title'    => _x( 'Title', 'Column label', 'wp-list-table-example' ),
+			'rating'   => _x( 'Rating', 'Column label', 'wp-list-table-example' ),
 			'director' => _x( 'Director', 'Column label', 'wp-list-table-example' ),
 		);
 
@@ -262,7 +262,7 @@ class TT_Example_List_Table extends WP_List_Table {
 		);
 
 		// Return the title contents.
-		return sprintf('%1$s <span style="color:silver;">(id:%2$s)</span>%3$s',
+		return sprintf( '%1$s <span style="color:silver;">(id:%2$s)</span>%3$s',
 			$item['title'],
 			$item['ID'],
 			$this->row_actions( $actions )
@@ -342,8 +342,8 @@ class TT_Example_List_Table extends WP_List_Table {
 		 * can be defined in another method (as we've done here) before being
 		 * used to build the value for our _column_headers property.
 		 */
-		$columns = $this->get_columns();
-		$hidden = array();
+		$columns  = $this->get_columns();
+		$hidden   = array();
 		$sortable = $this->get_sortable_columns();
 
 		/*
@@ -410,7 +410,7 @@ class TT_Example_List_Table extends WP_List_Table {
 		 * to ensure that the data is trimmed to only the current page. We can use
 		 * array_slice() to do that.
 		 */
-		$data = array_slice( $data,( ( $current_page - 1 ) * $per_page ), $per_page );
+		$data = array_slice( $data, ( ( $current_page - 1 ) * $per_page ), $per_page );
 
 		/*
 		 * REQUIRED. Now we can add our *sorted* data to the items property, where
@@ -422,9 +422,9 @@ class TT_Example_List_Table extends WP_List_Table {
 		 * REQUIRED. We also have to register our pagination options & calculations.
 		 */
 		$this->set_pagination_args( array(
-			'total_items' => $total_items,                       // WE have to calculate the total number of items.
-			'per_page'    => $per_page,                          // WE have to determine how many items to show on a page.
-			'total_pages' => ceil( $total_items / $per_page ),   // WE have to calculate the total number of pages.
+			'total_items' => $total_items,                     // WE have to calculate the total number of items.
+			'per_page'    => $per_page,                        // WE have to determine how many items to show on a page.
+			'total_pages' => ceil( $total_items / $per_page ), // WE have to calculate the total number of pages.
 		) );
 	}
 
@@ -446,6 +446,6 @@ class TT_Example_List_Table extends WP_List_Table {
 		// Determine sort order.
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] );
 
-		return ('asc' === $order ) ? $result : -$result;
+		return ( 'asc' === $order ) ? $result : - $result;
 	}
 }
