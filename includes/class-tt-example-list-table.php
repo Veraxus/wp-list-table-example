@@ -91,22 +91,20 @@ class TT_Example_List_Table extends WP_List_Table {
 		),
 	);
 
-	/** ************************************************************************
+	/**
+	 * TT_Example_List_Table constructor.
+	 *
 	 * REQUIRED. Set up a constructor that references the parent constructor. We
 	 * use the parent reference to set some default configs.
-	 ***************************************************************************/
-	function __construct(){
-		global $status, $page;
-
-		//Set parent defaults
+	 */
+	public function __construct() {
+		// Set parent defaults.
 		parent::__construct( array(
-			'singular'  => 'movie',     //singular name of the listed records
-			'plural'    => 'movies',    //plural name of the listed records
-			'ajax'      => false        //does this table support ajax?
+			'singular'  => 'movie',     // Singular name of the listed records.
+			'plural'    => 'movies',    // Plural name of the listed records.
+			'ajax'      => false,       // Does this table support ajax?
 		) );
-
 	}
-
 
 	/** ************************************************************************
 	 * Recommended. This method is called when the parent class can't find a method
