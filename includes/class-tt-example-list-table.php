@@ -269,7 +269,10 @@ class TT_Example_List_Table extends WP_List_Table {
 		);
 	}
 
-	/** ************************************************************************
+	/**
+	 * Get an associative array ( option_name => option_title ) with the list
+	 * of bulk actions available on this table.
+	 *
 	 * Optional. If you need to include bulk actions in your list table, this is
 	 * the place to define them. Bulk actions are an associative array in the format
 	 * 'slug'=>'Visible Title'
@@ -281,12 +284,13 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * Also note that list tables are not automatically wrapped in <form> elements,
 	 * so you will need to create those manually in order for bulk actions to function.
 	 *
-	 * @return array An associative array containing all the bulk actions: 'slugs'=>'Visible Titles'
-	 **************************************************************************/
-	function get_bulk_actions() {
+	 * @return array An associative array containing all the bulk actions.
+	 */
+	protected function get_bulk_actions() {
 		$actions = array(
-			'delete'    => 'Delete'
+			'delete' => _x( 'Delete', 'List table bulk action', 'wp-list-table-example' ),
 		);
+
 		return $actions;
 	}
 
