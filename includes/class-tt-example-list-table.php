@@ -294,20 +294,20 @@ class TT_Example_List_Table extends WP_List_Table {
 		return $actions;
 	}
 
-	/** ************************************************************************
+	/**
+	 * Handle bulk actions.
+	 *
 	 * Optional. You can handle your bulk actions anywhere or anyhow you prefer.
 	 * For this example package, we will handle it in the class to keep things
 	 * clean and organized.
 	 *
 	 * @see $this->prepare_items()
 	 **************************************************************************/
-	function process_bulk_action() {
-
-		//Detect when a bulk action is being triggered...
-		if( 'delete'===$this->current_action() ) {
-			wp_die('Items deleted (or they would be if we had items to delete)!');
+	protected function process_bulk_action() {
+		// Detect when a bulk action is being triggered.
+		if ( 'delete' === $this->current_action() ) {
+			wp_die( 'Items deleted (or they would be if we had items to delete)!' );
 		}
-
 	}
 
 	/** ************************************************************************
