@@ -1,3 +1,14 @@
+<?php
+/**
+ * WP List Table Example admin page view
+ *
+ * @package   WPListTableExample
+ * @author    Matt van Andel
+ * @copyright 2015 Matthew van Andel
+ * @license   GPL-2.0+
+ */
+
+?>
 <div class="wrap">
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
