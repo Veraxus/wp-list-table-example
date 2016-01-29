@@ -1,16 +1,16 @@
 <?php
 /**
- * Custom List Table Example plugin
+ * Custom WP List Table Example plugin
  *
  * @package   WPListTableExample
  * @author    Matt van Andel
- * @copyright 2015 Matthew van Andel
+ * @copyright 2016 Matthew van Andel
  * @license   GPL-2.0+
  *
  * @wordpress-plugin
- * Plugin Name: Custom List Table Example
+ * Plugin Name: Custom WP List Table Example
  * Description: A highly-documented plugin that demonstrates how to create custom List Tables using official WP APIs.
- * Version:     1.4.1
+ * Version:     1.5
  * Author:      Matt van Andel
  * Author URI:  http://www.mattvanandel.com
  * Text Domain: wp-list-table-example
@@ -19,7 +19,7 @@
  */
 
 /*
-    Copyright 2015  Matthew Van Andel  (email : matt@mattvanandel.com)
+    Copyright 2016  Matthew Van Andel  (email : matt@mattvanandel.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -49,22 +49,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*
- * Load the base class.
+ * LOADING THE BASE CLASS
  *
  * The WP_List_Table class isn't automatically available to plugins, so we need
  * to check if it's available and load it if necessary. In this tutorial, we are
  * going to use the WP_List_Table class directly from WordPress core.
  *
- * IMPORTANT:
  * Please note that the WP_List_Table class technically isn't an official API,
- * and it could change at some point in the distant future. Should that happen,
- * I will update this plugin with the most current techniques for your reference
- * immediately.
+ * and is subject to change in the future. Should breaking changes happen, I 
+ * will update this plugin with the most current techniques for your reference
+ * right away.
  *
- * If you are really worried about future compatibility, you can make a copy of
+ * If you are worried about future compatibility, you should make a copy of
  * the WP_List_Table class (file path is shown just below) to use and distribute
  * with your plugins. If you do that, just remember to change the name of the
- * class to avoid conflicts with core.
+ * class (or namespace it) to avoid conflicts with core.
  *
  * Since I will be keeping this tutorial up-to-date for the foreseeable future,
  * I am going to work with the copy of the class provided in WordPress core.
@@ -73,12 +72,17 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
-// Require the custom list table class.
+/**
+ * LOAD THE CHILD CLASS
+ * 
+ * Next, we need to create and load a child class that extends WP_List_Table.
+ * Most of the work will be done there. Open the file now and take a look.
+ */
 require dirname( __FILE__ ) . '/includes/class-tt-example-list-table.php';
 
 add_action( 'admin_menu', 'tt_add_menu_items' );
 /**
- * Register the test page.
+ * REGISTER THE EXAMPLE ADMIN PAGE
  *
  * Now we just need to define an admin page. For this example, we'll add a top-level
  * menu item to the bottom of the admin menus.
@@ -94,7 +98,7 @@ function tt_add_menu_items() {
 }
 
 /**
- * Callback to render the test page.
+ * CALLBACK TO RENDER THE EXAMPLE ADMIN PAGE
  *
  * This function renders the admin page and the example list table. Although it's
  * possible to call `prepare_items()` and `display()` from the constructor, there
