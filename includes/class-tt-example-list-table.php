@@ -4,12 +4,12 @@
  *
  * @package   WPListTableExample
  * @author    Matt van Andel
- * @copyright 2015 Matthew van Andel
+ * @copyright 2016 Matthew van Andel
  * @license   GPL-2.0+
  */
 
 /**
- * Custom list table class.
+ * Example List Table Child Class
  *
  * Create a new list table package that extends the core WP_List_Table class.
  * WP_List_Table contains most of the framework for generating the table, but we
@@ -34,8 +34,8 @@ class TT_Example_List_Table extends WP_List_Table {
 	 * slightly and create a pre-built array. Think of this as the data that might
 	 * be returned by $wpdb->query()
 	 *
-	 * In a real-world scenario, you would make your own custom query inside
-	 * this class' prepare_items() method.
+	 * In a real-world scenario, you would run your own custom query inside
+	 * the prepare_items() method in this class.
 	 *
 	 * @var array
 	 * ************************************************************************
@@ -361,34 +361,36 @@ class TT_Example_List_Table extends WP_List_Table {
 		$this->process_bulk_action();
 
 		/*
+		 * GET THE DATA!
+		 * 
 		 * Instead of querying a database, we're going to fetch the example data
 		 * property we created for use in this plugin. This makes this example
 		 * package slightly different than one you might build on your own. In
 		 * this example, we'll be using array manipulation to sort and paginate
-		 * our data. In a real-world implementation, you will probably want to
-		 * use sort and pagination data to build a custom query instead, as you'll
-		 * be able to use your precisely-queried data immediately.
+		 * our dummy data.
+		 * 
+		 * In a real-world situation, this is probably where you would want to 
+		 * make your actual database query. Likewise, you will probably want to
+		 * use any posted sort or pagination data to build a custom query instead, 
+		 * as you'll then be able to use the returned query data immediately.
+		 *
+		 * For information on making queries in WordPress, see this Codex entry:
+		 * http://codex.wordpress.org/Class_Reference/wpdb
 		 */
 		$data = $this->example_data;
 
 		/*
-		 * This checks for sorting input and sorts the data in our array accordingly.
+		 * This checks for sorting input and sorts the data in our array of dummy
+		 * data accordingly (using a custom usort_reorder() function). It's for 
+		 * example purposes only.
 		 *
 		 * In a real-world situation involving a database, you would probably want
 		 * to handle sorting by passing the 'orderby' and 'order' values directly
 		 * to a custom query. The returned data will be pre-sorted, and this array
-		 * sorting technique would be unnecessary.
+		 * sorting technique would be unnecessary. In other words: remove this when
+		 * you implement your own query.
 		 */
 		usort( $data, array( $this, 'usort_reorder' ) );
-
-		/*
-		 * ***********************************************************************
-		 * In a real-world situation, this is where you would place your query.
-		 *
-		 * For information on making queries in WordPress, see this Codex entry:
-		 * http://codex.wordpress.org/Class_Reference/wpdb
-		 * ***********************************************************************
-		 */
 
 		/*
 		 * REQUIRED for pagination. Let's figure out what page the user is currently
