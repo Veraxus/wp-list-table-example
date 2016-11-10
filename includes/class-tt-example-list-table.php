@@ -244,7 +244,7 @@ class TT_Example_List_Table extends WP_List_Table {
 
 		$actions['edit'] = sprintf(
 			'<a href="%1$s">%2$s</a>',
-			esc_url( wp_nonce_url( admin_url( add_query_arg( $edit_query_args ) ), 'editmovie_' . $item['ID'] ) ),
+			esc_url( wp_nonce_url( add_query_arg( $edit_query_args, 'admin.php' ), 'editmovie_' . $item['ID'] ) ),
 			_x( 'Edit', 'List table row action', 'wp-list-table-example' )
 		);
 
@@ -257,7 +257,7 @@ class TT_Example_List_Table extends WP_List_Table {
 
 		$actions['delete'] = sprintf(
 			'<a href="%1$s">%2$s</a>',
-			esc_url( wp_nonce_url( admin_url( add_query_arg( $delete_query_args ) ), 'deletemovie_' . $item['ID'] ) ),
+			esc_url( wp_nonce_url( add_query_arg( $delete_query_args, 'admin.php' ), 'deletemovie_' . $item['ID'] ) ),
 			_x( 'Delete', 'List table row action', 'wp-list-table-example' )
 		);
 
